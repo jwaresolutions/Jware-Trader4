@@ -2,74 +2,146 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Box,
+  Typography,
+} from '@mui/material'
+import {
+  Dashboard as DashboardIcon,
+  TrendingUp as TradeIcon,
+  ShowChart as PositionsIcon,
+  Receipt as OrdersIcon,
+  SmartToy as StrategiesIcon,
+  Newspaper as MarketDataIcon,
+  Description as LogsIcon,
+  Settings as SettingsIcon,
+  Help as HelpIcon,
+  Logout as LogoutIcon,
+} from '@mui/icons-material'
 
 interface NavItem {
   label: string
   href: string
-  icon?: string
+  icon: React.ReactNode
 }
 
 const navItems: NavItem[] = [
-  { label: 'Dashboard', href: '/dashboard', icon: '📊' },
-  { label: 'Trade', href: '/trade', icon: '💹' },
-  { label: 'Positions', href: '/positions', icon: '📈' },
-  { label: 'Orders', href: '/orders', icon: '📋' },
-  { label: 'Strategies', href: '/strategies', icon: '🤖' },
-  { label: 'Market Data', href: '/market', icon: '📰' },
-  { label: 'System Logs', href: '/logs', icon: '📝' },
-  { label: 'Settings', href: '/settings', icon: '⚙️' },
+  { label: 'Dashboard', href: '/dashboard', icon: <DashboardIcon /> },
+  { label: 'Trade', href: '/trade', icon: <TradeIcon /> },
+  { label: 'Positions', href: '/positions', icon: <PositionsIcon /> },
+  { label: 'Orders', href: '/orders', icon: <OrdersIcon /> },
+  { label: 'Strategies', href: '/strategies', icon: <StrategiesIcon /> },
+  { label: 'Market Data', href: '/market', icon: <MarketDataIcon /> },
+  { label: 'System Logs', href: '/logs', icon: <LogsIcon /> },
+  { label: 'Settings', href: '/settings', icon: <SettingsIcon /> },
 ]
+
+const drawerWidth = 240
 
 export default function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-64 bg-gray-900 text-white min-h-screen">
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-8">Jware Trader</h2>
-        
-        <nav className="space-y-2">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href
-            
-            return (
-              <Link
-                key={item.href}
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+          backgroundColor: '#1a1a1a',
+          color: 'white',
+        },
+      }}
+    >
+      <Box sx={{ p: 3 }}>
+        <Typography variant="h5" component="h1" fontWeight="bold">
+          Jware Trader
+        </Typography>
+      </Box>
+      
+      <List sx={{ px: 2 }}>
+        {navItems.map((item) => {
+          const isActive = pathname === item.href
+          
+          return (
+            <ListItem key={item.href} disablePadding sx={{ mb: 0.5 }}>
+              <ListItemButton
+                component={Link}
                 href={item.href}
-                className={`
-                  flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors
-                  ${isActive 
-                    ? 'bg-blue-600 text-white' 
-                    : 'hover:bg-gray-800 text-gray-300 hover:text-white'
-                  }
-                `}
+                selected={isActive}
+                sx={{
+                  borderRadius: 2,
+                  '&.Mui-selected': {
+                    backgroundColor: 'primary.main',
+                    '&:hover': {
+                      backgroundColor: 'primary.dark',
+                    },
+                  },
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                  },
+                }}
               >
-                <span className="text-xl">{item.icon}</span>
-                <span className="font-medium">{item.label}</span>
-              </Link>
-            )
-          })}
-        </nav>
+                <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.label} />
+              </ListItemButton>
+            </ListItem>
+          )
+        })}
+      </List>
+      
+      <Box sx={{ flexGrow: 1 }} />
+      
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
+      
+      <List sx={{ p: 2 }}>
+        <ListItem disablePadding sx={{ mb: 0.5 }}>
+          <ListItemButton
+            component={Link}
+            href="/help"
+            sx={{
+              borderRadius: 2,
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+              <HelpIcon />
+            </ListItemIcon>
+            <ListItemText primary="Help" />
+          </ListItemButton>
+        </ListItem>
         
-        <div className="mt-auto pt-8 border-t border-gray-800">
-          <div className="space-y-2">
-            <Link
-              href="/help"
-              className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white transition-colors"
-            >
-              <span className="text-xl">❓</span>
-              <span className="font-medium">Help</span>
-            </Link>
-            <Link
-              href="/logout"
-              className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-800 text-gray-300 hover:text-white transition-colors"
-            >
-              <span className="text-xl">🚪</span>
-              <span className="font-medium">Logout</span>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </aside>
+        <ListItem disablePadding>
+          <ListItemButton
+            component={Link}
+            href="/logout"
+            sx={{
+              borderRadius: 2,
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Drawer>
   )
 }

@@ -1,8 +1,15 @@
 'use client'
 
 import { ReactNode } from 'react'
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { theme } from '@/theme/theme'
 
 export function Providers({ children }: { children: ReactNode }) {
-  // Add providers here as needed (Redux, Theme, Auth, etc.)
-  return <>{children}</>
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
+  )
 }

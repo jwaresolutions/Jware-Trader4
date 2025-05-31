@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { Box } from '@mui/material'
 import Sidebar from './Sidebar'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
@@ -13,12 +14,23 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     return <>{children}</>
   }
   
+  const drawerWidth = 240
+  
   return (
-    <div className="flex min-h-screen">
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar />
-      <main className="flex-1 bg-gray-50">
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+          backgroundColor: 'background.default',
+        }}
+      >
         {children}
-      </main>
-    </div>
+      </Box>
+    </Box>
   )
 }
