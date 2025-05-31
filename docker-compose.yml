@@ -112,8 +112,9 @@ services:
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
     volumes:
-      - ./services/api-gateway:/app
-      - /app/node_modules
+      - ./services/api-gateway/src:/app/src
+      - ./services/api-gateway/package.json:/app/package.json
+      - ./services/api-gateway/tsconfig.json:/app/tsconfig.json
     ports:
       - "3000:3000"
     depends_on:
@@ -133,9 +134,13 @@ services:
       - NODE_ENV=${NODE_ENV}
       - NEXT_PUBLIC_API_URL=http://localhost:3000
     volumes:
-      - ./services/web-ui:/app
-      - /app/node_modules
-      - /app/.next
+      - ./services/web-ui/src:/app/src
+      - ./services/web-ui/public:/app/public
+      - ./services/web-ui/package.json:/app/package.json
+      - ./services/web-ui/next.config.js:/app/next.config.js
+      - ./services/web-ui/tsconfig.json:/app/tsconfig.json
+      - ./services/web-ui/tailwind.config.js:/app/tailwind.config.js
+      - ./services/web-ui/postcss.config.js:/app/postcss.config.js
     ports:
       - "3001:3001"
     depends_on:

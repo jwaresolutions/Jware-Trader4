@@ -84,7 +84,10 @@ print_success "Directory structure created."
 
 # Build Docker images
 print_status "Building Docker images..."
-docker-compose build --parallel
+docker-compose build --parallel || {
+    print_error "Docker build failed. Check the logs above for details."
+    exit 1
+}
 print_success "Docker images built successfully."
 
 # Start services
