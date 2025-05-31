@@ -1,5 +1,5 @@
 """
-Configuration management for Trading Engine
+Configuration management for Market Data Service
 """
 from pydantic_settings import BaseSettings
 from pydantic import Field, validator
@@ -26,11 +26,6 @@ class Settings(BaseSettings):
     REDIS_PORT: int = Field(default=6379, env="REDIS_PORT")
     REDIS_PASSWORD: str = Field(..., env="REDIS_PASSWORD")
     
-    # Security
-    JWT_SECRET: str = Field(..., env="JWT_SECRET")
-    JWT_ALGORITHM: str = Field(default="HS256")
-    JWT_EXPIRATION_HOURS: int = Field(default=24)
-    
     # CORS
     ALLOWED_ORIGINS: List[str] = Field(
         default=["http://localhost:3000", "http://localhost:3001"]
@@ -43,11 +38,6 @@ class Settings(BaseSettings):
     # Logging
     LOG_LEVEL: str = Field(default="INFO")
     LOG_FORMAT: str = Field(default="json")
-    
-    # Circuit breaker settings
-    CIRCUIT_BREAKER_FAILURE_THRESHOLD: int = Field(default=5)
-    CIRCUIT_BREAKER_RECOVERY_TIMEOUT: int = Field(default=60)  # seconds
-    CIRCUIT_BREAKER_EXPECTED_EXCEPTION: Optional[str] = Field(default=None)
     
     @validator("PYTHON_ENV")
     def validate_environment(cls, v):
@@ -111,7 +101,6 @@ def get_safe_config() -> dict:
     sensitive_keys = [
         "POSTGRES_PASSWORD", 
         "REDIS_PASSWORD", 
-        "JWT_SECRET",
         "DATABASE_URL",
         "SYNC_DATABASE_URL",
         "REDIS_URL"

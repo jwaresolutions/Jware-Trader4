@@ -12,6 +12,9 @@ import uuid
 import os
 from typing import Dict, Any
 
+from .database import init_db, close_db
+from .config import settings
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -28,7 +31,9 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("Starting Market Data Service")
     
-    # TODO: Initialize database connection
+    # Initialize database connection
+    await init_db()
+    
     # TODO: Initialize Redis connection
     # TODO: Initialize market data providers
     
@@ -36,7 +41,7 @@ async def lifespan(app: FastAPI):
     
     # Shutdown
     logger.info("Shutting down Market Data Service")
-    # TODO: Close all connections
+    await close_db()
 
 
 # Create FastAPI app
