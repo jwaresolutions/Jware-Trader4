@@ -4,13 +4,13 @@ WORKDIR /app
 
 # Install dependencies
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
 
 # Copy source code
 COPY . .
 
 # Build TypeScript
-RUN npm run build || echo "Build script not found, skipping..."
+RUN npm run build
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \

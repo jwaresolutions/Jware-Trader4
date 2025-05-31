@@ -42,7 +42,8 @@ async def init_db():
     try:
         # Test connection
         async with engine.begin() as conn:
-            await conn.run_sync(lambda conn: conn.execute("SELECT 1"))
+            from sqlalchemy import text
+            await conn.execute(text("SELECT 1"))
         logger.info("Database connection initialized successfully")
     except Exception as e:
         logger.error(f"Failed to initialize database: {str(e)}")
