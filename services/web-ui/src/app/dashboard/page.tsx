@@ -126,28 +126,6 @@ export default function Dashboard() {
           )}
         </div>
       </div>
-
-      {/* Quick Actions */}
-      <div className="mt-8 flex gap-4">
-        <a 
-          href="/logs" 
-          className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-        >
-          View System Logs
-        </a>
-        <a 
-          href="/trade" 
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-        >
-          New Trade
-        </a>
-        <a 
-          href="/strategies" 
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-        >
-          Manage Strategies
-        </a>
-      </div>
     </div>
   )
 }
