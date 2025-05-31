@@ -18,11 +18,11 @@ class Settings(BaseSettings):
     POSTGRES_USER: str = Field(..., env="POSTGRES_USER")
     POSTGRES_PASSWORD: str = Field(..., env="POSTGRES_PASSWORD")
     POSTGRES_DB: str = Field(..., env="POSTGRES_DB")
-    POSTGRES_HOST: str = Field(default="postgres", env="POSTGRES_HOST")
+    POSTGRES_HOST: str = Field(default="jware-postgres", env="POSTGRES_HOST")
     POSTGRES_PORT: int = Field(default=5432, env="POSTGRES_PORT")
     
     # Redis
-    REDIS_HOST: str = Field(default="redis", env="REDIS_HOST")
+    REDIS_HOST: str = Field(default="jware-redis", env="REDIS_HOST")
     REDIS_PORT: int = Field(default=6379, env="REDIS_PORT")
     REDIS_PASSWORD: str = Field(..., env="REDIS_PASSWORD")
     

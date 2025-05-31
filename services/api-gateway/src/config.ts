@@ -9,15 +9,15 @@ export const config = {
   PORT: parseInt(process.env.PORT || '3000', 10),
   
   // Service URLs
-  TRADING_ENGINE_URL: process.env.TRADING_ENGINE_URL || 'http://trading-engine:8000',
-  MARKET_DATA_URL: process.env.MARKET_DATA_URL || 'http://market-data:8001',
+  TRADING_ENGINE_URL: process.env.TRADING_ENGINE_URL || 'http://jware-trading-engine:8000',
+  MARKET_DATA_URL: process.env.MARKET_DATA_URL || 'http://jware-market-data:8001',
   
   // Security
   JWT_SECRET: process.env.JWT_SECRET || 'your-secret-key',
   API_GATEWAY_SECRET: process.env.API_GATEWAY_SECRET || 'gateway-secret',
   
   // Redis
-  REDIS_HOST: process.env.REDIS_HOST || 'redis',
+  REDIS_HOST: process.env.REDIS_HOST || 'jware-redis',
   REDIS_PORT: parseInt(process.env.REDIS_PORT || '6379', 10),
   REDIS_PASSWORD: process.env.REDIS_PASSWORD || '',
   
