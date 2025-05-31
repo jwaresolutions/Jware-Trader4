@@ -11,7 +11,7 @@ export const authMiddleware = async (
   req: AuthRequest,
   res: Response,
   next: NextFunction
-): Promise<void> => {
+): Promise<void | Response> => {
   try {
     // Get token from header
     const authHeader = req.headers.authorization;
