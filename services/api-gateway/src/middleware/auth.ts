@@ -11,7 +11,7 @@ export const authMiddleware = async (
   req: AuthRequest,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   try {
     // Get token from header
     const authHeader = req.headers.authorization;
@@ -51,9 +51,9 @@ export const authMiddleware = async (
 // Optional auth middleware - doesn't fail if no token
 export const optionalAuthMiddleware = async (
   req: AuthRequest,
-  res: Response,
+  _res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
     

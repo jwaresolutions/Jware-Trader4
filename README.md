@@ -77,6 +77,8 @@ A professional automated trading platform built with a microservices architectur
    - Web UI: http://localhost:3001
    - API Gateway: http://localhost:3000
    - API Documentation: http://localhost:8000/docs
+   
+   **Note for Remote Development**: If you're developing on a remote host, replace `localhost` with your remote host's IP address or domain name. You may also need to configure your firewall to allow access to these ports.
 
 ## 🔧 Manual Setup
 

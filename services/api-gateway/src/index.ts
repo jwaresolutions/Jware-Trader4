@@ -64,7 +64,7 @@ const limiter = rateLimit({
 app.use('/api/', limiter);
 
 // Health check endpoints
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({
     status: 'healthy',
     service: 'api-gateway',
@@ -73,7 +73,7 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
-app.get('/health/detailed', async (req: Request, res: Response) => {
+app.get('/health/detailed', async (_req: Request, res: Response) => {
   const healthStatus = {
     status: 'healthy',
     service: 'api-gateway',
@@ -125,7 +125,7 @@ const tradingEngineProxy = createProxyMiddleware({
       proxyReq.setHeader('x-correlation-id', req.headers['x-correlation-id']);
     }
   },
-  onError: (err, req, res) => {
+  onError: (err, _req, res) => {
     logger.error('Trading Engine proxy error', { error: err.message });
     res.status(502).json({ error: 'Bad Gateway', message: 'Trading Engine unavailable' });
   }
@@ -140,7 +140,7 @@ const marketDataProxy = createProxyMiddleware({
       proxyReq.setHeader('x-correlation-id', req.headers['x-correlation-id']);
     }
   },
-  onError: (err, req, res) => {
+  onError: (err, _req, res) => {
     logger.error('Market Data proxy error', { error: err.message });
     res.status(502).json({ error: 'Bad Gateway', message: 'Market Data unavailable' });
   }
@@ -153,7 +153,7 @@ app.use('/api/v1/accounts', authMiddleware, tradingEngineProxy);
 app.use('/api/v1/market-data', marketDataProxy);
 
 // WebSocket handling
-wss.on('connection', (ws, req) => {
+wss.on('connection', (ws, _req) => {
   const clientId = uuidv4();
   logger.info('WebSocket connection established', { clientId });
   
