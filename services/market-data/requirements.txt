@@ -1,0 +1,42 @@
+# FastAPI and dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+
+# Database
+sqlalchemy==2.0.25
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# Redis
+redis==5.0.1
+aioredis==2.0.1
+
+# HTTP Client
+httpx==0.26.0
+aiohttp==3.9.1
+websockets==12.0
+
+# Data processing
+pandas==2.1.4
+numpy==1.26.3
+
+# Market data APIs (add specific ones as needed)
+# alpaca-py==0.13.3
+# polygon-api-client==1.12.4
+
+# Validation and Serialization
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Logging
+python-json-logger==2.0.7
+structlog==24.1.0
+
+# Utilities
+python-dotenv==1.0.0
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Development
+pytest==7.4.4
+pytest-asyncio==0.23.3

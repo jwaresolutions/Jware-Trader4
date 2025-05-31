@@ -1,0 +1,45 @@
+{
+  "environment": "development",
+  "debug": true,
+  "logging": {
+    "level": "DEBUG",
+    "format": "json"
+  },
+  "database": {
+    "pool_size": 10,
+    "max_overflow": 20,
+    "pool_recycle": 3600
+  },
+  "redis": {
+    "max_connections": 50,
+    "decode_responses": true
+  },
+  "api": {
+    "rate_limit": {
+      "requests_per_minute": 100,
+      "burst": 20
+    },
+    "cors": {
+      "allow_all_origins": true
+    }
+  },
+  "trading": {
+    "paper_trading": true,
+    "risk_management": {
+      "max_position_size": 0.1,
+      "max_daily_loss": 0.02,
+      "max_open_positions": 10
+    }
+  },
+  "market_data": {
+    "cache_ttl": 60,
+    "websocket": {
+      "reconnect_interval": 5,
+      "max_reconnect_attempts": 10
+    }
+  },
+  "monitoring": {
+    "metrics_enabled": true,
+    "health_check_interval": 30
+  }
+}

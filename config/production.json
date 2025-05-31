@@ -1,0 +1,51 @@
+{
+  "environment": "production",
+  "debug": false,
+  "logging": {
+    "level": "INFO",
+    "format": "json"
+  },
+  "database": {
+    "pool_size": 20,
+    "max_overflow": 40,
+    "pool_recycle": 3600
+  },
+  "redis": {
+    "max_connections": 100,
+    "decode_responses": true
+  },
+  "api": {
+    "rate_limit": {
+      "requests_per_minute": 60,
+      "burst": 10
+    },
+    "cors": {
+      "allow_all_origins": false,
+      "allowed_origins": [
+        "https://app.jware-trader.com"
+      ]
+    }
+  },
+  "trading": {
+    "paper_trading": false,
+    "risk_management": {
+      "max_position_size": 0.05,
+      "max_daily_loss": 0.01,
+      "max_open_positions": 5
+    }
+  },
+  "market_data": {
+    "cache_ttl": 300,
+    "websocket": {
+      "reconnect_interval": 10,
+      "max_reconnect_attempts": 5
+    }
+  },
+  "monitoring": {
+    "metrics_enabled": true,
+    "health_check_interval": 60,
+    "alert_endpoints": [
+      "https://monitoring.jware-trader.com/alerts"
+    ]
+  }
+}
